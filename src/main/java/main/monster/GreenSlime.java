@@ -38,10 +38,21 @@ public class GreenSlime {
 
     public int worldY;
 
-    public GreenSlime(GamePanel gamePanel, int screenXmonsterA, int screenYmonsterA,
-                      int screenXmonsterB, int screenYmonsterB, int screenXmonsterC, int screenYmonsterC,
-                      int screenXmonsterD, int screenYmonsterD, int screenXmonsterE, int screenYmonsterE,
-                      int screenXmonsterF, int screenYmonsterF) {
+    public GreenSlime(
+        GamePanel gamePanel,
+        int screenXmonsterA,
+        int screenYmonsterA,
+        int screenXmonsterB,
+        int screenYmonsterB,
+        int screenXmonsterC,
+        int screenYmonsterC,
+        int screenXmonsterD,
+        int screenYmonsterD,
+        int screenXmonsterE,
+        int screenYmonsterE,
+        int screenXmonsterF,
+        int screenYmonsterF
+    ) {
         this.gamePanel = gamePanel;
         this.screenXmonsterA = screenXmonsterA;
         this.screenYmonsterA = screenYmonsterA;
@@ -60,21 +71,15 @@ public class GreenSlime {
     }
 
     public void getImage() {
-
-
         try {
-
             image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("monster/greenSlime.png"));
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void update() {
-
     }
-
 
     public void draw(Graphics2D graphics2D) {
         // 画像を指定された座標に描画

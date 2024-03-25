@@ -5,6 +5,7 @@ import main.ui.BattleScreen;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -50,34 +51,29 @@ public class GamePanel extends JPanel implements Runnable {
     public AssetSetter assetSetter = new AssetSetter(this);
 
     public GamePanel() {
-
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-
         this.setBackground(Color.BLACK);
-
         this.setDoubleBuffered(true);
-
         this.addKeyListener(keyHandler);
-
         this.setFocusable(true);
     }
 
     public void setupGame() {
-
         assetSetter.setMonster();
-
     }
 
     public void startGameThread() {
-
         gameThread = new Thread(this);
         // runメソッドが自動的に呼ばれる
         gameThread.start();
-
     }
 
     @Override
     public void run() {
+        System.out.println("===================");
+        System.out.println(Arrays.toString(monsterGreenSlime));
+        System.out.println(monsterGreenSlime[0]);
+        System.out.println("===================");
         double drawInterval = 1000000000 / FPS;
         double delta = 0;
         long lastTime = System.nanoTime();
@@ -85,9 +81,7 @@ public class GamePanel extends JPanel implements Runnable {
         long timer = 0;
         int drawCount = 0;
 
-
         while (gameThread != null) {
-
             currentTime = System.nanoTime();
             // 1ループごとに経過時間をdrawIntervalで割っている
             delta += (currentTime - lastTime) / drawInterval;
@@ -110,7 +104,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-
         for (int i = 0; i < monsterGreenSlime.length; i++) {
             if (monsterGreenSlime[i] != null) {
                 monsterGreenSlime[i].update();
@@ -119,7 +112,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void paintComponent(Graphics g) {
-
         // superというのはこのクラスの親クラスこの場合JPanelとなる
         super.paintComponent(g);
         //  GraphicsをGraphics2Dに変換したことを意味している
@@ -129,13 +121,13 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == battleState) {
             battleScreen.draw(g2);
         }
+
         for (GreenSlime greenSlime : monsterGreenSlime) {
             if (greenSlime != null) {
                 greenSlime.draw(g2);
             }
         }
     }
-
 
     public int getTileSize() {
         return tileSize;

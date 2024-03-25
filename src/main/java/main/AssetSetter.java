@@ -21,18 +21,14 @@ public class AssetSetter {
         int screenXmonsterB = random.nextInt(620) + 80;
         int screenYmonsterB = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
 
-
         int screenXmonsterC = random.nextInt(620) + 80;
         int screenYmonsterC = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
-
 
         int screenXmonsterD = random.nextInt(620) + 80;
         int screenYmonsterD = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
 
-
         int screenXmonsterE = random.nextInt(620) + 80;
         int screenYmonsterE = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
-
 
         int screenXmonsterF = random.nextInt(620) + 80;
         int screenYmonsterF = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
