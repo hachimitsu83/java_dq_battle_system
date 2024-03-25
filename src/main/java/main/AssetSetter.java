@@ -3,14 +3,13 @@ package main;
 import main.monster.GreenSlime;
 
 import java.awt.Point;
-import java.util.Arrays;
 import java.util.Random;
 
 public class AssetSetter {
     GamePanel gamePanel;
 
-    private final int MAX_X_POSITION = 620;
-    private final int MIN_X_POSITION = 80;
+    private final int MAX_MONSTERS = 8;
+    private final int SPACING = 44;
 
     public AssetSetter(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -19,23 +18,27 @@ public class AssetSetter {
     public void setMonster() {
         Random random = new Random();
 
-        // GreenSlimeインスタンスを設定する回数をランダムに決定
-        int numberOfMonsters = random.nextInt(6) + 1; // 1から6の間のランダムな数
+        // GreenSlimeのインスタンス数を最大8体に固定
+        int numberOfMonsters = Math.min(random.nextInt(MAX_MONSTERS) + 1, MAX_MONSTERS);
+
+        // 画面中央のX座標を計算
+        int centerX = gamePanel.getScreenWidth() / 2;
+
+        // 最初のGreenSlimeが配置されるX座標を計算（中央からのオフセットを考慮）
+        int startX = centerX - (numberOfMonsters / 2 * SPACING) + (numberOfMonsters % 2 == 0 ? SPACING / 2 : 0);
 
         for (int i = 0; i < numberOfMonsters; i++) {
-            gamePanel.monsterGreenSlime[i] = createGreenSlime(random);
+            gamePanel.monsterGreenSlime[i] = createGreenSlime(startX, i);
         }
     }
 
-    private GreenSlime createGreenSlime(Random random) {
+    private GreenSlime createGreenSlime(int startX, int index) {
         int screenY = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
-        Point[] positions = new Point[6];
+        // 各モンスターのX座標を等間隔に設定
+        int screenX = startX + index * SPACING;
 
-        for (int i = 0; i < positions.length; i++) {
-            int screenX = random.nextInt(MAX_X_POSITION - MIN_X_POSITION + 1) + MIN_X_POSITION;
-            positions[i] = new Point(screenX, screenY);
-        }
+        Point position = new Point(screenX, screenY);
 
-        return new GreenSlime(gamePanel, positions);
+        return new GreenSlime(gamePanel, new Point[]{position});
     }
 }
