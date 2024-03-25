@@ -70,10 +70,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("===================");
-        System.out.println(Arrays.toString(monsterGreenSlime));
-        System.out.println(monsterGreenSlime[0]);
-        System.out.println("===================");
         double drawInterval = 1000000000 / FPS;
         double delta = 0;
         long lastTime = System.nanoTime();
