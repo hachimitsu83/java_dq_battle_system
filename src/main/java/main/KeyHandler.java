@@ -15,7 +15,6 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     @Override
@@ -29,12 +28,14 @@ public class KeyHandler implements KeyListener {
                 gamePanel.getBattleScreen().setCommandNum(3);
             }
         }
+
         if (code == KeyEvent.VK_S) {
             gamePanel.getBattleScreen().setCommandNum(gamePanel.getBattleScreen().getCommandNum() + 1);
             if (gamePanel.getBattleScreen().getCommandNum() > 3) {
                 gamePanel.getBattleScreen().setCommandNum(0);
             }
         }
+
         if (code == KeyEvent.VK_ENTER) {
             // コマンド番号 コマンド番号がゼロの場合、次のコマンドを選択します。
             if (gamePanel.getBattleScreen().getCommandNum() == 0) {
@@ -51,17 +52,20 @@ public class KeyHandler implements KeyListener {
 
         if (code == KeyEvent.VK_W) {
             upPressed = true;
-
         }
+
         if (code == KeyEvent.VK_S) {
             downPressed = true;
         }
+
         if (code == KeyEvent.VK_A) {
             leftPressed = true;
         }
+
         if (code == KeyEvent.VK_D) {
             rightPressed = true;
         }
+
         if (code == KeyEvent.VK_ENTER) {
             enterPressed = true;
         }
